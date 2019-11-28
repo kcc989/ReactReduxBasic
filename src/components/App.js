@@ -1,18 +1,26 @@
 import React from 'react';
-import { Button } from 'evergreen-ui';
-import { useDispatch, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
+import { Route, Switch } from 'react-router'; // react-router v4/v5
+import { ConnectedRouter } from 'connected-react-router';
 
-import { increment } from '../actions/incrementActions';
+import configureStore, { history } from '../config/configureStore';
+import Counter from './Counter';
+import Nav from './Nav';
+
+const store = configureStore();
 
 function App() {
-  const count = useSelector(state => state.counter.count);
-  const dispatch = useDispatch();
-
   return (
-    <div className="my-4 mx-1">
-      <p>The count is {count}</p>
-      <Button onClick={() => dispatch(increment())}>Increase count here</Button>
-    </div>
+    <Provider store={store}>
+      <Nav />
+      <ConnectedRouter history={history}>
+        <>
+          <Switch component={Nav}>
+            <Route path="/" component={Counter} />
+          </Switch>
+        </>
+      </ConnectedRouter>
+    </Provider>
   );
 }
 

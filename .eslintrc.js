@@ -10,6 +10,8 @@ module.exports = {
   rules: {
     'jsx-a11y/href-no-hash': ['off'],
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
+    'import/prefer-default-export': ['off'],
+    'no-param-reassign': ['error', { props: false }],
     'max-len': [
       'warn',
       {

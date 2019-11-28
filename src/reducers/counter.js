@@ -10,8 +10,8 @@ export default (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case types.INCREMENT_COUNT: {
-        draft.count = draft.count + 1;
-        break;
+        draft.count += 1;
+        return draft;
       }
       default:
         return draft;
